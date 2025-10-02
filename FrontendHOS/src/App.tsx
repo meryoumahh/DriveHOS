@@ -71,6 +71,7 @@ export default App
 import React, { useState } from "react";
 import TripPlanningForm from "./components/TripPlanningForm";
 import Map from "./components/Map";
+import TripResults from "./components/TripResults";
 
 export type Position = {
   address: string;
@@ -92,8 +93,8 @@ const defaultPositions: Positions = {
 
 const App: React.FC = () => {
   const [positions, setPositions] = useState<Positions>(defaultPositions);
+  const [tripData, setTripData] = useState<any>(null);
 
-  // Geocode handler: field is one of 'currentLocation', 'pickupLocation', 'dropoffLocation'
   async function handleAddressSearch(field: keyof Positions, address: string) {
     if (!address) return;
     const response = await fetch(
@@ -112,6 +113,10 @@ const App: React.FC = () => {
       }));
     }
   }
+
+  const handleTripResult = (data: any) => {
+    setTripData(data);
+  };
 
   return (
     <div className="flex flex-col gap-5 w-full bg-gray-50">
@@ -166,10 +171,12 @@ const App: React.FC = () => {
             positions={positions}
             setPositions={setPositions}
             onAddressSearch={handleAddressSearch}
+            onTripResult={handleTripResult}
           />
           <Map positions={positions} />
         </div>
         
+        {tripData && <TripResults tripData={tripData} />}
         
       </main>
       </main>

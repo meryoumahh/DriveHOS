@@ -2,8 +2,8 @@ import axios from "axios";
 const API_URL = "http://localhost:8000/api";
 
 const apiClient = axios.create({
-  baseURL: API_URL, // your Django backend base URL
-  timeout: 10000,
+  baseURL: API_URL,
+  timeout: 30000,
 });
 
 // ✅ Request interceptor
@@ -23,7 +23,7 @@ apiClient.interceptors.request.use(
 apiClient.interceptors.response.use(
   (response) => {
     console.log("✅ Response:", response.status, response.data);
-    return response.data;
+    return response;
   },
   (error) => {
     console.error("❌ Response error:", error.response || error.message);

@@ -22,6 +22,6 @@ class TripPlanRequestView(APIView):
             print("from ", current_location, " to ", pickup_location, " distance is ", distance_miles1)
             print("from ", current_location, " to ", pickup_location, " the flat distance is ", distance_flat_miles)
             print(current_location, pickup_location, dropoff_location, current_cycle_hours, distance_flat_miles, distance_miles1)
-            result = hos_trip_plan_multileg(distance_miles1, distance_miles2,  current_cycle_hours , avg_speed_mph=50.0)
+            result = hos_trip_plan_multileg(distance_miles1, distance_miles2,  current_cycle_hours , avg_speed_mph=60.0)
             return Response({"message": "Trip plan calculated", "data": result})
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
