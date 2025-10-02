@@ -1,9 +1,9 @@
 import axios from "axios";
-const API_URL = "https://drivehos.onrender.com/api";
+const API_URL = import.meta.env.VITE_API_URL || "https://drivehos.onrender.com/api";
 
 const apiClient = axios.create({
   baseURL: API_URL,
-  timeout: 30000,
+  timeout: 30000000000,
 });
 
 // ✅ Request interceptor
