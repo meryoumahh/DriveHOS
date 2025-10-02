@@ -1,5 +1,5 @@
 import React from "react";
-import { Clock, MapPin, Truck, CheckCircle } from "lucide-react";
+import {MapPin, CheckCircle } from "lucide-react";
 
 type TripResultsProps = {
   tripData: any;
